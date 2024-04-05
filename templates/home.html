@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expense Tracker</title>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+</head>
+<body>
+<h1>Expense Tracker</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Sample row, you can add more rows dynamically using JavaScript -->
+        <tr>
+            <td>2024-04-01</td>
+            <td>Food</td>
+            <td>Lunch</td>
+            <td>10.00</td>
+        </tr>
+    </tbody>
+</table>
+<form id="expense-form">
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required><br><br>
+    <label for="category">Category:</label>
+    <input type="text" id="category" name="category" required><br><br>
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" required><br><br>
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="amount" step="0.01" min="0" required><br><br>
+    <button type="button" onclick="addExpense()">Add Expense</button>
+</form>
+
+<script>
+    function addExpense() {
+        const date = document.getElementById('date').value;
+        const category = document.getElementById('category').value;
+        const description = document.getElementById('description').value;
+        const amount = parseFloat(document.getElementById('amount').value).toFixed(2);
+
+        const table = document.querySelector('table tbody');
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td>${date}</td>
+            <td>${category}</td>
+            <td>${description}</td>
+            <td>${amount}</td>
+        `;
+        table.appendChild(newRow);
+
+        document.getElementById('expense-form').reset();
+    }
+</script>
+</body>
+</html>
